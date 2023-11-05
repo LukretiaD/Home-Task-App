@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" -->
+
+    <link rel="stylesheet" th:href="@{/css/task.css}" />
+    <style>
+        .custom-dropdown {
+            display: inline-block;
+            position: relative;
+        }
+
+        .custom-dropdown select {
+            display: none;
+        }
+
+        .custom-dropdown .selected-options {
+            border: 1px solid #ccc;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript" th:src="@{/static/script.js}"></script>
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById("rewardDropdown");
+            dropdown.classList.toggle("show-dropdown");
+        }
+
+        function selectOption(option) {
+            const selectedOptions = document.getElementById("selectedOptions");
+            const optionText = option.textContent;
+            const optionValue = option.value;
+
+            if (option.selected) {
+                selectedOptions.insertAdjacentHTML(
+                    "beforeend",
+                    `<span>${optionText}<input type="hidden" name="selectedRewards" value="${optionValue}"></span>`
+                );
+            } else {
+                const hiddenInput = selectedOptions.querySelector(`input[value="${optionValue}"]`);
+                if (hiddenInput) {
+                    hiddenInput.parentNode.remove();
+                }
+            }
+        }
+    </script>
+    <title>Add Task</title>
+</head>
+
+<body>
+
+
+
+    <div class="form-center">
+
+        <form th:action="@{/tasks}" method="POST" th:object="${task}">
+
+            <!-- <h2> Task List </h2>
+
+            <ul th:each="task:${household.tasks}">
+                <li th:text="${task.taskName}"></li>
+
+            </ul> -->
+
+
+
+            <br />
+            <br />
+            <br />
+            <br />
+
+
+            <h2>Create Task</h2>
+            <br>
+
+            <table>
+                <tr>
+
+                    <td><span>Task Name:</span></td>
+                    <td> <input type="text" id="taskName" name="taskName" th:field="*{taskName}" required /></td>
+                </tr>
+                <tr>
+                    <td><span>Task Description:</span></td>
+                    <td> <input type="text" id="taskDescription" name="taskDescription" th:field="*{taskDescription}"
+                            required /></td>
+                </tr>
+                <tr>
+                    <td><span>Start Date:</span></td>
+                    <td> <input type="date" id="startDate" name="startDate" th:field="*{startDate}" /></td>
+                </tr>
+                <tr>
+                    <td><span>End Date:</span></td>
+                    <td><input type="date" id="endDate" name="endDate" th:field="*{endDate}" /></td>
+                </tr>
+                <tr>
+                    <td><span>Time Duration:</span></td>
+                    <td> <input type="number" id="timeDuration" name="timeDuration" th:field="*{timeDuration}" /></td>
+                </tr>
+                <tr>
+                    <td><span>Linked Task ID:</span></td>
+                    <!-- <td> <input type="number" id="linkedTaskID" name="linkedTaskID" th:field="*{linkedTaskID}" /></td> -->
+                    <td> <select>
+                        <option selected value="null"> </option>
+                            <option th:each="task : ${household.tasks}" th:value="${task.id}" th:text="${task.taskName}"
+                                th:field="*{linkedTaskID}" name="linkedTaskID"></option>
+                            </th:each>
+                        </select></td>
+
+
+                </tr>
+                <tr>
+                    <td><span>Reward:</span></td>
+                    <td> <select th:field="*{reward.id}" name="selectedRewards">
+                            <option th:each="reward : ${household.rewards}" th:text="${reward.name}" th:value="${reward.id}">
+                            </option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td><span>Is One Time:</span></td>
+                    <td> <input type="checkbox" id="isOneTime" name="isOneTime" th:field="*{isOneTime}" /></td>
+                </tr>
+                <tr>
+                    <td><span>Root Task:</span></td>
+                    <td> <input type="checkbox" id="rootTask" name="rootTask" th:field="*{rootTask}" /></td>
+                </tr>
+                <tr>
+                    <td><span>Duration Active:</span></td>
+                    <td> <input type="checkbox" id="durationActive" name="durationActive"
+                            th:field="*{durationActive}" /></td>
+                </tr>
+                <tr>
+                    <td><span>Completed:</span></td>
+                    <td> <input type="checkbox" id="completed" name="completed" th:field="*{completed}" /></td>
+                </tr>
+                <tr>
+                    <!-- <td><span>Created Date:</span></td>
+                    <td> <input type="date" id="createdDate" name="createdDate" th:field="*{createdDate}" /></td>
+                </tr> -->
+                <tr>
+                    <td></td>
+                    <td><button type="submit">Create Task</button></td>
+                </tr>
+
+
+            </table>
+
+
+
+
+
+        </form>
+    </div>
+</body>
+
+</html>

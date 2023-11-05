@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"
+        th:href="@{/static/style.css}">
+    <link rel="stylesheet" th:href="@{/css/settings.css}">
+    <style>
+        /* Style for the settings container */
+        .settings {
+            /* Light gray background */
+            padding: 20px;
+            max-width: 400px;
+            /* Adjust the maximum width as needed */
+            margin: 50px auto 0;
+            border: 1px solid #ccc;
+            /* Gray border */
+            border-radius: 5px;
+        }
+
+        .settings h1,
+        .settings h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        /* Style for buttons */
+        .settings button {
+            background-color: #DB504A;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+
+    <title></title>
+</head>
+
+<body>
+
+    <div class="settings">
+        <h1>User Settings</h1>
+        <!-- Change Password Form -->
+        <h2>Change Password</h2>
+        <form th:action="@{/change-password}" method="post">
+            <label for="currentPassword">Current Password:</label>
+            <input type="password" id="currentPassword" name="currentPassword" required><br>
+
+            <label for="newPassword">New Password:</label>
+            <input type="password" id="newPassword" name="newPassword" required><br>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required><br>
+
+            <button type="submit">Change Password</button>
+        </form>
+
+        <!-- Change Household Name Form -->
+        <h2>Change Household Name</h2>
+        <form th:action="@{/change-household-name}" method="post">
+            <label for="newHouseholdName">New Household Name:</label>
+            <input type="text" id="newHouseholdName" name="newHouseholdName" required><br>
+
+            <button type="submit">Change Household Name</button>
+        </form>
+
+    </div>
+</body>
+
+</html>

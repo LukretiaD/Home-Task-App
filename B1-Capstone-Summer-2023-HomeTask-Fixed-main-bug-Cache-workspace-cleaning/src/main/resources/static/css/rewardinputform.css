@@ -1,0 +1,13 @@
+#cashBox {
+    height: 200px;
+    background-color: aqua;
+    border-color: black;
+
+}
+
+#cashExpanded {
+    display: none;
+
+}
+
+

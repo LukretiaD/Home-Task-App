@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    
+    
+    <title>HouseTask</title>
+    <link rel="stylesheet" th:href="@{/css/profile.css}" />
+    <script type="text/javascript" th:src="@{/js/profile.js}"></script>
+   
+</head>
+
+<body>
+    
+
+    <!-- <h3 th:text="${name}">PlaceHolder</h3> -->
+    <div class="container">
+        <div class="profile-box">
+            
+            <img class="profile-pic" th:if="${household != null}" th:src="@{'/displayProfilePicture/' +${household.id}}" alt="Profile Picture">
+            <form th:action="@{/upload-profile-picture}" method="POST" enctype="multipart/form-data">
+                <label for="input-file">Upload Profile Picture</label>
+                <input type="hidden" name="householdId" th:value="${household?.id}" />
+                <input type="file" name="file" id="input-file" accept="image/*" required>
+                <input type="submit" id="input-file" value="SUBMIT">
+            </form>
+            
+            <h3 th:text="${household.name}">Jackie Chan</h3>
+            <p th:text="${user.username}" >Martial Artist/Family Role</p>
+            <p>Email?</p>
+            <h2>Household Balance</h2>
+            <p th:text=" '$' +${household.householdBank}">Allowance?</p>
+            
+        </div>
+    </div>
+
+    
+    
+
+    <!-- <script>
+        
+        let profilePic = document.getElementById("profilePic")
+let inputFile = document.getElementById("input-file")
+
+
+inputFile.onchange = function(){
+    profilePic.src = URL.createObjectURL(inputFile.files[0])
+}
+       
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     const profilePic = document.getElementById("profile-pic");
+        //     const inputFile = document.getElementById("input-file");
+            
+
+        //     inputFile.addEventListener("change", function() {
+        //         const file = inputFile.files[0];
+        //         if (file) {
+        //             const reader = new FileReader();
+        //             reader.onload = function(e)
+        //             {
+        //                 if(profilePic){
+        //                 profilePic.src = e.target.result;
+        //                 }
+        //             }
+        //             reader.readAsDataURL(file);
+        //         } else {
+                    
+        //             profilePic.src = ""; 
+        //         }
+        //     });
+        // });
+    </script> -->
+
+    
+
+
+
+    <section>
+        <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+        <form class="logout" th:action="@{/logout}" method="GET">
+            <input type="submit" value="Sign Out"/>
+        </form>
+        </section>
+
+    </main>
+
+    
+
+
+    <footer>
+        &copy; 2023 HomeTasks
+    </footer>
+
+</body>
+
+</html>

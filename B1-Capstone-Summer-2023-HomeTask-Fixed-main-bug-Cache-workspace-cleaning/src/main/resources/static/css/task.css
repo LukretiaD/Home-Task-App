@@ -1,0 +1,17 @@
+.form-center {
+  display:flex;
+  justify-content: center;
+  padding-top: 125px;
+}
+
+.button {
+  background-color: #af4c61; /* Green */
+}
+
+
+#main {
+  /* border: 5px solid; */
+  margin: auto;
+  width: fit-content;
+  padding: 10px;
+}

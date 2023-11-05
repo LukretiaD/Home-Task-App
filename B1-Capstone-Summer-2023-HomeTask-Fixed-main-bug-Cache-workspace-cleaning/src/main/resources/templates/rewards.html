@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"
+        th:href="@{/static/rewardinputform.css}">
+
+        <!-- My Stylesheets -->
+    <link rel="stylesheet" th:href="@{/css/afterLoginPg.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+
+    <!-- My Scripts -->
+    <script type="text/javascript" th:src="@{/js/Reward.js}"></script>
+    <script type="text/javascript" th:src="@{/js/Dashboard.js}"></script>
+    <title>Add Task</title>
+
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <!-- <a href="#home">Home</a>
+            <a href="#completed task">Completed Task</a>
+            <a href="#reward">My Reward</a>
+            <a href="#profile">Profile</a> May not need profile link/page -->
+        </nav>
+
+        <!--Maybe add a sign out link in nav-->
+
+        <!-- <h1> HomeTasks</h1> -->
+
+    </header>
+    <section class="main">
+    <div class="container">
+        <div id="box">
+            
+            <h2> Reward List </h2><br>
+
+            <ol>
+                <li th:each="reward : ${household.rewards}">
+                    <span th:text="${reward.name} + ' - ' + ' $'"></span><span th:text="${reward.cashAmount}"></span>
+                </li>
+            </ol><br>
+
+
+            <h3> Add Reward </h3>
+            <form th:action="@{/rewards}" th:object="${reward}" method="POST">
+                <span> Reward name: </span>
+                <input type="text" id="name" name="name" th:field="*{name}" required />
+                <br>
+                <span>Cash Amount:</span>
+                <input type="number" id="cashAmount" name="cashAmount" th:field="*{cashAmount}" required />
+                <br>
+                <span>Other Reward: </span>
+                <input type="checkbox" id="other" th:field="*{other}" onchange="toggleOtherReward()" />
+                <br>
+                <div id="otherRewardDiv" th:if="${reward.other}">
+                    <span>Specify other reward:</span>
+                    <input type="text" id="otherReward" name="otherReward" th:field="*{otherReward}" />
+                    <br>
+                </div>
+                <br>
+                <div class="button">
+                    <button type="submit"> Create reward </button>
+                </div>
+            </form>
+        </div>
+    </div></section>
+
+    <script>
+        function toggleOtherReward() {
+            var otherCheckbox = document.getElementById("other");
+            var otherRewardDiv = document.getElementById("otherRewardDiv");
+            var otherRewardInput = document.getElementById("otherReward");
+
+            if (otherCheckbox && otherRewardDiv && otherRewardInput) {
+                if (otherCheckbox.checked) {
+                    otherRewardDiv.style.display = "block";
+                    otherRewardInput.required = true;
+                } else {
+                    otherRewardDiv.style.display = "none";
+                    otherRewardInput.required = false;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

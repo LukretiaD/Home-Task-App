@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.user {
+    width: 100%;
+    height: 100vh;
+    background: var(--grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 550px;
+
+}
+
+.bankCard {
+    width: 400px;
+    background: #fff;
+    padding: 40px;
+    border: radius 15px;
+    text-align: center;
+    color: #333;
+
+}
+
+.bankCard h1 {
+    font-weight: 750;
+    color: #000;
+}
+

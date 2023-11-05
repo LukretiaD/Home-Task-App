@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/bank.css}" />
+    <script type="text/javascript" th:src="@{/js/bank.js}"></script>
+    <title>Document</title>
+</head>
+<body>
+  <section class="main">
+    <div class="user">
+      <div class="bankCard">
+        <h1 id="bank" class="moneyInBank" th:text="'$' + ${household.getHouseholdBank()}">$</h1>
+        <h1 >Current Household Budget</h1>
+        <h2 th:text="${household.getName()}"></h2>
+
+        <form action="/increment" method="post">
+          <label for="incrementAmount">Select a Dollar Amount:</label>
+          <select id="incrementAmount" name="incrementAmount">
+              <option value="5.00">5.00</option>
+              <option value="10.0">10.00</option>
+              <option value="25.0">25.00</option>
+              <option value="50.00">50.00</option>
+              <option value="100.00">100.00</option>
+              <option value="500.00">500.00</option>
+          </select>
+          <button type="submit">Deposit</button>
+        </form>
+        
+        <!-- <a th:href="${household.name}"></a> -->
+      </div>
+    </div></section>
+    
+</body>
+</html>

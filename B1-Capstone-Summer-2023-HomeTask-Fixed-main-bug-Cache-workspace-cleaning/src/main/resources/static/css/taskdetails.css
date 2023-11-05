@@ -1,0 +1,27 @@
+.form-center {
+  display:flex;
+  justify-content: center;
+  padding-top: 125px;
+}
+
+.button {
+  background-color: #af4c61; /* Green */
+}
+
+
+#button {
+  background-color: #DB504A;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+
+#main {
+  /* border: 5px solid; */
+  margin: auto;
+  width: fit-content;
+  padding: 10px;
+}
